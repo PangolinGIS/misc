@@ -1,0 +1,17 @@
+### R-code to batch convert csv-files to xlsx-files
+
+install.packages(c("readr", "writexl"))
+library(readr)
+library(writexl)
+
+#set your folder path to csv-files, e.g.:
+setwd("C:/")
+
+csv_files <- list.files(pattern = "*.csv")
+
+for (file in csv_files) {
+  # Read csv-files and convert to XLS-files, write out files to folder
+  data <- read_csv(file)
+  excel_file <- sub(".csv", ".xlsx", file)
+  write_xlsx(data, excel_file)
+}
